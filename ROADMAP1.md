@@ -30,30 +30,30 @@
 
 | №| Команда| Результат             |
 |:--:| :-------------: |:------------------:| 
-|T1.1	|app.jar	|1 + вывод справки|
-|T1.2	|app.jar -h|	1 + вывод справки|
-|T1.3	|app.jar -q|	0 + вывод справки (особый случай)|
-|T2.1	|app.jar -login vasya -pass 123|	0|
-|T2.2	|app.jar -pass 123 -login vasya|	0|
-|T2.3	|app.jar -login VASYA -pass 123|	2|
-|T2.4	|app.jar -login asd -pass 123|	3|
-|T2.5	|app.jar -login admin -pass 1234|	4|
-|T2.6	|app.jar -login admin -pass admin|	0|
-|T3.1	|app.jar -login vasya -pass 123 -role READ -res A|	0|
-|T3.2	|app.jar -login vasya -pass 123 -role DELETE -res A|	5|
-|T3.3	|app.jar -login vasya -pass 123 -role WRITE -res A|	6|
-|T3.4	|app.jar -login vasya -pass 123 -role READ -res A.B|	0|
-|T3.5	|app.jar -login admin -pass admin -role WRITE -res A.B.C|	0|
-|T3.6	|app.jar -login vasya -pass 1234 -role DELETE -res A	|4|
-|T3.7	|app.jar -login vasya -pass 123 -role WRITE -res A.B.C	|6|
-|T3.8	|app.jar -login admin -pass admin -role READ	|0 (удачная аутентиф.)|
-| T3.9	|app.jar -login admin -pass admin -role EXECUTE -res A|	6|
-| T3.10	|app.jar -login admin -pass admin -role WRITE -res A.A	|6|
-|T4.1   |app.jar -login vasya -pass 123 -role READ -res A -ds 2020-01-01 -de 2020-02-01 -vol 20|	0
-|T4.2	|app.jar -login vasya -pass 123 -role READ -res A -ds 2020-01-01 -de 2020-15-01 -vol 20|	7 (несуществующая дата)|
-|T4.3	|app.jar -login vasya -pass 123 -role READ -res A -ds 2020-01-01 -de asd -vol 20|	7 (неправильный ввод даты)|
-|T4.4   |app.jar -login vasya -pass 123 -role READ -res A -ds 2020-01-01 -de 2020-02-01 -vol asd|	7 (неправильный ввод объема)|
-|T4.6	|app.jar -login vasya -pass 123 -role READ -res A -ds 2020-01-01 -de 2020-02-01 -vol -1|	7 (неверный объем)|
+|T1.1	|`app.jar`	|1 + вывод справки|
+|T1.2	|`app.jar -h`|	1 + вывод справки|
+|T1.3	|`app.jar -q`|	0 + вывод справки (особый случай)|
+|T2.1	|`app.jar -login vasya -pass 123`|	0|
+|T2.2	|`app.jar -pass 123 -login vasya`|	0|
+|T2.3	|`app.jar -login VASYA -pass 123`|	2|
+|T2.4	|`app.jar -login asd -pass 123`|	3|
+|T2.5	|`app.jar -login admin -pass 1234`|	4|
+|T2.6	|`app.jar -login admin -pass admin`|	0|
+|T3.1	|`app.jar -login vasya -pass 123 -role READ -res A`|	0|
+|T3.2	|`app.jar -login vasya -pass 123 -role DELETE -res A`|	5|
+|T3.3	|`app.jar -login vasya -pass 123 -role WRITE -res A`|	6|
+|T3.4	|`app.jar -login vasya -pass 123 -role READ -res A.B`|	0|
+|T3.5	|`app.jar -login admin -pass admin -role WRITE -res A.B.C`|	0|
+|T3.6	|`app.jar -login vasya -pass 1234 -role DELETE -res A`	|4|
+|T3.7	|`app.jar -login vasya -pass 123 -role WRITE -res A.B.C`	|6|
+|T3.8	|`app.jar -login admin -pass admin -role READ`	|0 (удачная аутентиф.)|
+| T3.9	|`app.jar -login admin -pass admin -role EXECUTE -res A`|	6|
+| T3.10	|`app.jar -login admin -pass admin -role WRITE -res A.A`	|6|
+|T4.1   |`app.jar -login vasya -pass 123 -role READ -res A -ds 2020-01-01 -de 2020-02-01 -vol 20`|	0
+|T4.2	|`app.jar -login vasya -pass 123 -role READ -res A -ds 2020-01-01 -de 2020-15-01 -vol 20`|	7 (несуществующая дата)|
+|T4.3	|`app.jar -login vasya -pass 123 -role READ -res A -ds 2020-01-01 -de asd -vol 20`|	7 (неправильный ввод даты)|
+|T4.4   |`app.jar -login vasya -pass 123 -role READ -res A -ds 2020-01-01 -de 2020-02-01 -vol asd`|	7 (неправильный ввод объема)|
+|T4.6	|`app.jar -login vasya -pass 123 -role READ -res A -ds 2020-01-01 -de 2020-02-01 -vol -1`|	7 (неверный объем)|
 
 ### 4.Простые сценарии - 30 мин
 
@@ -61,13 +61,13 @@
 
 4.2 Создаем метод вывода справки - 10 мин
 
-4.3 Проверяем надо ли выводить справку args[0] == “-h” (R1.8.2) - 5 мин 
+4.3 Проверяем надо ли выводить справку `args[0] == “-h”` (R1.8.2) - 5 мин 
 
 4.4 Во всех остальных случаях выводим справку и возвращаем 0  - 5 мин
 
 ### 5.Сценарии аутентификации - 88 минут
 
-5.1 Создаем метод который проверяет надо ли аутентифицировать args[0] == "login" && args[2] == "-pass"  - 5 мин
+5.1 Создаем метод который проверяет надо ли аутентифицировать `args[0] == "login" && args[2] == "-pass"`  - 5 мин
 
 5.2 Создаем метод validate login (проверяем правильность формата логина через regexp) (R1.1) - 5 мин
 
@@ -75,13 +75,13 @@
 
 5.4 Создаем метод который проверяет пароль  (тест: login == vasya, pass == 123) - 5 мин
 
-5.5 Создаем класс(data class) User(login, pass) - 5 мин
+5.5 Создаем класс(data class) `User(login, pass)` - 5 мин
 
 5.6 Создаем коллекцию для хранения юзеров и добавляем туда тестовые данные - 10 мин
 
 5.7 Исправляем методы на работу с коллекцией юзеров - 20 мин
 
-5.8 Создаем data class ArgHandler (h, login, pass) конструктор которого на вход получит массив параметров командной строки - 8 мин(R1.8)
+5.8 Создаем `data class ArgHandler (h, login, pass)` конструктор которого на вход получит массив параметров командной строки - 8 мин(R1.8)
 
 5.9 В класс ArgHandler вносим методы проверки наличия аргументов (п 4.1), вывода справки (п 4.2), нужна ли аутентификация(п 5.1) - 15 мин
 
@@ -91,7 +91,7 @@
 
 6.1 Создаем перечисление для хранения ролей Write, Read, Execute (R1.5) - 5 мин 
 
-6.2 Создаем метод нужна ли авторизация в классе ArgHandler args[4] == "-res" - 10 мин
+6.2 Создаем метод нужна ли авторизация в классе `ArgHandler args[4] == "-res"` - 10 мин
 
 6.3 Создаем метод который проверяет существует ли такой ресурс (проверяем правильность ресурса через regexp) - 7 мин
 
@@ -109,13 +109,13 @@
 
 ### 7.Сценарий аккаутинга - 80 мин
 
-7.1 Создаем метод нужен ли аккаутинг в классе ArgHandler args[6] == "-ds" - 5 мин
+7.1 Создаем метод нужен ли аккаутинг в классе `ArgHandler args[6] == "-ds"` - 5 мин
 
 7.2 Создаем метод который проверяет правильность ввода дат(ds < de + правильность формата) - 8 мин
 
 7.3 Создаем метод который проверяет правильность ввода объема использования (vol > 0) - 7 мин
 
-7.4 Создаем data class Using(login, res, ds, de, vol) (R1.7) - 15 мин
+7.4 Создаем `data class Using(login, res, ds, de, vol)` (R1.7) - 15 мин
 
 7.5 Создаем коллекцию объектов Using - 5 мин
 
